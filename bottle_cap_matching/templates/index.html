@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bottle Cap Checker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #000000f2;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            max-width: 700px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        input[type="file"] {
+            padding: 0.5rem;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #a711d1;
+            color: white;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3498db;
+        }
+
+        .message {
+            background: #eafaf1;
+            border-left: 4px solid #2ecc71;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+
+        .match-section {
+            margin-top: 2rem;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bottle Cap Checker</h1>
+    </header>
+
+    <main>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="file">Upload New Bottle Caps:</label>
+            <input type="file" name="files[]" multiple required>
+            <input type="submit" value="Upload & Check">
+        </form>
+
+        {% for msg in messages %}
+            <div class="message">{{ msg }}</div>
+        {% endfor %}
+
+        {% for img_path in match_imgs %}
+            <div class="match-section">
+                <h4>Potential Duplicate:</h4>
+                <img src="{{ url_for('static', filename=img_path.split('static/')[1]) }}" alt="Match image" style="max-width:600px;"/>
+            </div>
+        {% endfor %}
+    </main>
+</body>
+</html>
+

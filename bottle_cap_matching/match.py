@@ -63,6 +63,7 @@ def match_features(desc1, desc2):
     return matches
 
 
+#orb script wtapped in flask route for web communication
 #GET requests: when you first visit the page, it shows the form to upload files.
 #POST requests: when you submit/upload files, the app processes them.
 @app.route('/', methods=['GET', 'POST'])
