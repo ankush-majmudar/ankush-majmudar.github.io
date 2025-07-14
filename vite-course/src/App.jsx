@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
+  const greeting = import.meta.env.VITE_GREETING
 
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <h2>{greeting}</h2>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
